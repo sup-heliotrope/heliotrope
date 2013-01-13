@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
+$:.unshift File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
+
 require 'rubygems'
 require 'json'
 require 'trollop'
