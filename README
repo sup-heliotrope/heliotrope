@@ -102,6 +102,17 @@ For example, the following bash script:
 will mirror mail from a GMail account into Heliotrope with a 5-minute poll
 time.
 
+MAILSTORE
+
+By default, heliotrope stores its data (messages, hooks, index, data
+store) in the "mailstore", stored in $XDG_DATA_HOME/heliotrope. This
+will most certainly default to ~/.local/share/heliotrope if you are
+using Linux.
+
+If you want to use another folder, you can specify it on the command
+line with the `-d <mailstore> switch. Or you can symlink
+$XDG_DATA_HOME/heliotrope to the folder of your choice.
+
 JSON API SPEC
 -------------
 

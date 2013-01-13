@@ -27,6 +27,7 @@ GEM
       polyglot (>= 0.3.1)
     trollop (2.0)
     whistlepig (0.12)
+    xdg (2.2.3)
 
 PLATFORMS
   ruby
@@ -40,3 +41,4 @@ DEPENDENCIES
   sinatra
   trollop
   whistlepig
+  xdg

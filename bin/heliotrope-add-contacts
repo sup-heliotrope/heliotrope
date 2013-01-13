@@ -4,6 +4,7 @@ require 'rubygems'
 require 'trollop'
 require 'whistlepig'
 require 'irb'
+require 'xdg'
 
 require "heliotrope"
 
@@ -17,7 +18,7 @@ Usage: #{$0} [options]
 
 Where options include:
 EOS
-  opt :dir, "Base directory for all index files", :required => true, :type => String
+  opt :dir, "Base directory for all index files", :type => String, :default => "#{XDG["DATA"]}/heliotrope"
   opt :user_email_addresses, "A comma-delimited list of email addresses that belong to you. This is not necessary, but will improve the contact collection process.", :default => ""
 end
 

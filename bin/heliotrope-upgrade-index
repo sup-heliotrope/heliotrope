@@ -4,6 +4,7 @@
 require 'rubygems'
 require 'trollop'
 require "heliotrope"
+require 'xdg'
 
 opts = Trollop::options do
   banner <<EOS
@@ -11,7 +12,7 @@ Usage: #{$0} [options]
 
 Where options include:
 EOS
-  opt :dir, "Base directory for all index files", :type => String, :required => true
+  opt :dir, "Base directory for all index files", :type => String, :default => "#{XDG["DATA"]}/heliotrope"
 end
 
 def upgrade__to_0_1 store, index, hooks
