@@ -9,7 +9,7 @@ want in a modern email client:
 
 Heliotrope is a backend service against which email clients / MUAs can be
 written. To use it, you must use a client. For an example client, see
-Turnsole: http://github.com/wmorgan/turnsole.
+Turnsole: http://github.com/sup-heliotrope/turnsole.
 
 WHY ANOTHER PROTOCOL? WHY NOT JUST USE IMAP?
 
@@ -46,7 +46,7 @@ GETTING IT
 Once Heliotrope is more stable, you will be able to install it via rubygems.
 For you, you should run this:
 
-  git clone https://github.com/wmorgan/heliotrope.git
+  git clone https://github.com/sup-heliotrope/heliotrope.git
 
 RUNNING IT
 
@@ -81,7 +81,7 @@ resume where the stopped.
 After import, start the server again. You should see stuff at
 http://localhost:8042/.
 
-For a full client, see https://github.com/wmorgan/turnsole/.
+For a full client, see https://github.com/sup-heliotrope/turnsole/.
 
 ADDING EMAIL
 
