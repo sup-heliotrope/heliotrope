@@ -2,7 +2,7 @@
 # encoding: UTF-8
 
 LIBDIR = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
-if File.directory? LIBDIR
+if File.exists? File.join(LIBDIR, "heliotrope.rb")
   $:.unshift LIBDIR
 end
 
