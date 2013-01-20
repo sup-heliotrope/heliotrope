@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-$:.unshift File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
+LIBDIR = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
+if File.directory? LIBDIR
+  $:.unshift LIBDIR
+end
 
 require 'rubygems'
 require 'json'
