@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
+LIBDIR = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
+if File.exists? File.join(LIBDIR, "heliotrope.rb")
+  $:.unshift LIBDIR
+end
+
 require 'rubygems'
 require 'json'
 require 'trollop'
@@ -10,6 +15,7 @@ require "heliotrope"
 require 'cgi'
 require 'rack'
 require 'fileutils'
+require 'xdg'
 
 class Set
   ## apparently we're going to have to do this the hard way
@@ -635,7 +641,7 @@ Where options include:
 EOS
   opt :host, "Host interface to listen on", :default => "localhost", :short => "-H"
   opt :port, "Port to listen on", :default => 8042
-  opt :dir, "Base directory for all index files", :default => "."
+  opt :dir, "Base directory for all index files", :default => "#{XDG["DATA"]}/heliotrope"
   opt :mode, "Runtime mode", :default => "development"
 end
 

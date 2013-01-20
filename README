@@ -9,7 +9,7 @@ want in a modern email client:
 
 Heliotrope is a backend service against which email clients / MUAs can be
 written. To use it, you must use a client. For an example client, see
-Turnsole: http://github.com/wmorgan/turnsole.
+Turnsole: http://github.com/sup-heliotrope/turnsole.
 
 WHY ANOTHER PROTOCOL? WHY NOT JUST USE IMAP?
 
@@ -34,19 +34,24 @@ PREPARING YOURSELF
    you can try the ruby1.9.1 package. You can also download and compile it from
    http://www.ruby-lang.org/en/downloads/. For Debian-based Linux distros,
    make sure you have the libreadline-dev and zlib1g-dev packages installed.
-3. Run `gem install trollop whistlepig rest-client sinatra rmail leveldb-ruby locale lrucache curb`
+3. Install the bundler gem and install the needed gems:
+    $ gem install bundler
+    $ bundle install
+
+   If bundler doesn't work for you, you can read the needed gems in
+   Gemfile and install them.
 
 GETTING IT
 
 Once Heliotrope is more stable, you will be able to install it via rubygems.
 For you, you should run this:
 
-  git clone https://github.com/wmorgan/heliotrope.git
+  git clone https://github.com/sup-heliotrope/heliotrope.git
 
 RUNNING IT
 
 Decide where you want to store everything. Call this directory <mailstore>.
-Now run `ruby -Ilib bin/heliotrope-server -d <mailstore>`.
+Now run `ruby bin/heliotrope-server`.
 
 Heliotrope exposes a simple debugging HTML interface. If you point your
 browser to http://localhost:8042/, you should see your empty mailstore.
@@ -57,16 +62,16 @@ IMPORTING EXISTING MAIL STORES
 To bulk import mail, use heltrope-import. You must stop your server first.
 
 To add a pre-existing mbox:
-  ruby -Ilib bin/heliotrope-import -m <mbox> -d <mailstore>
+  ruby bin/heliotrope-import -m <mbox>
 
 To add a pre-existing maildir:
-  ruby -Ilib bin/heliotrope-import -a <maildir> -d <mailstore>
+  ruby bin/heliotrope-import -a <maildir>
 
 To add a pre-existing Gmail account:
-  ruby -Ilib bin/heliotrope-import -g <gmail username> -d <mailstore>
+  ruby bin/heliotrope-import -g <gmail username>
 
 To add a pre-existing, non-Gmail IMAP account:
-  ruby -Ilib bin/heliotrope-import -i <imap server> -d <mailstore>
+  ruby bin/heliotrope-import -i <imap server>
 
 For testing purposes, you may want to limit the number of emails added by
 using the --num-messages option. If you additionally use the --state-file
@@ -76,7 +81,7 @@ resume where the stopped.
 After import, start the server again. You should see stuff at
 http://localhost:8042/.
 
-For a full client, see https://github.com/wmorgan/turnsole/.
+For a full client, see https://github.com/sup-heliotrope/turnsole/.
 
 ADDING EMAIL
 
@@ -85,7 +90,7 @@ emails as they arrive. Unlike heliotrope-import, heliotrope-add talks to
 your running server.
 
 To add a single email:
-  cat email.txt | ruby -Ilib bin/heliotrope-add
+  cat email.txt | ruby bin/heliotrope-add
 
 To add messages from existing GMail, IMAP, mbox or maildir sources, use the
 same arguments as to heliotrope-import above. Note that if you specify
@@ -95,12 +100,23 @@ the source. This makes it easy to mirror an existing account.
 For example, the following bash script:
 
   while true; do
-    ruby -Ilib bin/heliotrope-import -g <gmail username> -d <mailstore>
+    ruby bin/heliotrope-import -g <gmail username>
     sleep 300
   done
 
 will mirror mail from a GMail account into Heliotrope with a 5-minute poll
 time.
+
+MAILSTORE
+
+By default, heliotrope stores its data (messages, hooks, index, data
+store) in the "mailstore", stored in $XDG_DATA_HOME/heliotrope. This
+will most certainly default to ~/.local/share/heliotrope if you are
+using Linux.
+
+If you want to use another folder, you can specify it on the command
+line with the `-d <mailstore> switch. Or you can symlink
+$XDG_DATA_HOME/heliotrope to the folder of your choice.
 
 JSON API SPEC
 -------------
