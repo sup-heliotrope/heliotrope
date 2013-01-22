@@ -1,6 +1,11 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
+LIBDIR = File.join(File.expand_path(File.dirname(__FILE__)), "..", "lib")
+if File.exists? File.join(LIBDIR, "heliotrope.rb")
+  $:.unshift LIBDIR
+end
+
 require 'rubygems'
 require 'trollop'
 require 'curb'
